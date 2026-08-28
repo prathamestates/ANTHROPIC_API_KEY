@@ -1,0 +1,1 @@
+Stockly deployment notes.
