@@ -1,1 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Stop mobile browsers (esp. Chrome on iOS/Android) from treating an
+   upward scroll-past-the-top as a "pull to refresh" gesture, which was
+   reloading the whole app (and dropping the in-memory session state)
+   any time someone scrolled back up a page. */
+html, body {
+  overscroll-behavior-y: contain;
+}
 
