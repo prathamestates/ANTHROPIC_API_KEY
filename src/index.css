@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Stop mobile browsers (esp. Chrome on iOS/Android) from treating an
+   upward scroll-past-the-top as a "pull to refresh" gesture, which was
+   reloading the whole app (and dropping the in-memory session state)
+   any time someone scrolled back up a page. */
+html, body {
+  overscroll-behavior-y: contain;
+}
+
+/* Accessibility: a visible focus ring for anyone navigating by keyboard.
+   Tailwind's utility classes handle this on form inputs already, but
+   plain buttons/links across the app didn't have one at all — without
+   this, a keyboard user tabbing through the site can't see where they
+   are. */
+:focus-visible {
+  outline: 2px solid #65a30d;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Accessibility: respect the OS-level "reduce motion" setting. Anyone
+   who has turned this on gets an effectively static experience —
+   transitions resolve instantly instead of animating. This is a real
+   accessibility need (vestibular disorders, motion sensitivity), not a
+   style preference. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
